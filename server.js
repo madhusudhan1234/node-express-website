@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const cookieSession = require('cookie-session');
 const createError = require('http-errors');
+const bodyParser = require('body-parser');
 
 const FeedbackService = require('./services/FeedbackService');
 const SpeakerService = require('./services/SpeakerService');
@@ -26,6 +27,8 @@ app.use(
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, './views'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.locals.siteName = 'ROUX Meetups';
 
